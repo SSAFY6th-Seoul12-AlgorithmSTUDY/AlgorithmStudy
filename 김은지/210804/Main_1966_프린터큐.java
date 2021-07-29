@@ -32,12 +32,8 @@ public class Main_1966_프린터큐 {
 					if (pi == keyIdx) break;
 					else si++;
 				} 
-				if (pi == size-1) {
-					pi = 0;
-				} else {
-					pi++;
-				}
-				
+				if (pi == size-1) pi = 0;
+				else pi++;
 			}
 		}
 		
