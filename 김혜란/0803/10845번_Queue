@@ -1,0 +1,66 @@
+package com.ssafy.study_2nd;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+//10845번
+public class Queue {
+
+	public static void main(String[] args) throws Exception {
+		/*push X: 정수 X를 큐에 넣는 연산이다.
+		pop: 큐에서 가장 앞에 있는 정수를 빼고, 그 수를 출력한다. 만약 큐에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+		size: 큐에 들어있는 정수의 개수를 출력한다.
+		empty: 큐가 비어있으면 1, 아니면 0을 출력한다.
+		front: 큐의 가장 앞에 있는 정수를 출력한다. 만약 큐에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+		back: 큐의 가장 뒤에 있는 정수를 출력한다. 만약 큐에 들어있는 정수가 없는 경우에는 -1을 출력한다.*/
+		
+		//Scanner sc= new Scanner(System.in)
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		
+		//int T = sc.nextInt(); // 테스트 케이스
+		int T = Integer.parseInt(br.readLine());
+		
+		StringTokenizer st;
+		
+		int[] arr = new int[T]; //배열로
+		int first = 0; //초기값 설정
+		int end = 0;
+		
+		while(T-- > 0) {
+			//String input = sc.next();
+			st = new StringTokenizer(br.readLine(), " ");
+			String input = st.nextToken() ;
+			
+			if(input.equals("push")) {
+				arr[end] = Integer.parseInt(st.nextToken()); //push라고 되어있으면 그 값을 추가.
+				end++;
+			}else if(input.equals("pop")) { //pop이라고 되어있으면 
+				if(first == end) {
+					System.out.println(-1); // 정수가 없으면 -1
+				}else {
+					System.out.println(arr[first]); //가장 앞 정수
+					arr[first] = 0; // 가장 앞 정수 뺴기
+					first++;}
+			}else if(input.equals("front")) { // 정수가 없으면 -1
+				if(first == end) {
+					System.out.println(-1); 
+				}else System.out.println(arr[first]); //가장 앞 정수 출력
+			}else if(input.equals("back")) {
+				if(first == end) { //들어있는 정수 없으면 -1
+					System.out.println(-1);
+				}else System.out.println(arr[end-1]); // 들어있는 정수 있으면, 가장 뒤 정수 출력
+			}else if(input.equals("empty")) {
+				if(first == end) { //큐가 비었으면 1
+					System.out.println(1);
+				}else System.out.println(0); //안비었으면 0
+			}else if(input.equals("size")) {System.out.println(end-first);} // 큐에 들어있는 정수 개수
+		}
+		br.close();
+		return;
+	}
+}
+//https://st-lab.tistory.com/178
