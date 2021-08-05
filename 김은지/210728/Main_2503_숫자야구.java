@@ -1,8 +1,8 @@
-package baekjoon;
+package baekjoon.brute_force;
 
 import java.util.Scanner;
 
-public class Main_2503 {
+public class Main_2503_숫자야구 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         

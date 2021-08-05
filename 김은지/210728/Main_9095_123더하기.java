@@ -1,8 +1,8 @@
-package baekjoon;
+package baekjoon.brute_force;
 
 import java.util.Scanner;
 
-public class Main_9095 {
+public class Main_9095_123더하기 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         

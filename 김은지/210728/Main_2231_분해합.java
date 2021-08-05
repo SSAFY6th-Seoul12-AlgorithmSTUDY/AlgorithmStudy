@@ -1,8 +1,8 @@
-package baekjoon;
+package baekjoon.brute_force;
 
 import java.util.Scanner;
 
-public class Main_2231 {
+public class Main_2231_분해합 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
