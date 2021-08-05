@@ -5,7 +5,6 @@ import java.io.*;
 
 public class Main_1388_바닥장식 {
 	
-	static int cnt = 0;
 	static int N, M;
 	static char[][] floor;
 
@@ -15,6 +14,7 @@ public class Main_1388_바닥장식 {
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
 		floor = new char[N][M];
+		int cnt = 0;
 		
 		for (int i = 0; i < floor.length; i++) {
 			floor[i] = br.readLine().toCharArray();
@@ -23,8 +23,8 @@ public class Main_1388_바닥장식 {
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < M; j++) {
 				if (floor[i][j] == '-' || floor[i][j] == '|') {
-					dfs(floor[i][j], i, j);
 					cnt++;
+					dfs(floor[i][j], i, j);
 				}
 			}
 		}
