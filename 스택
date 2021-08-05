@@ -1,0 +1,87 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class bj_10828 {
+	
+	 public static int[] stack;
+	   public static int size = 0;
+
+	   public static void main(String[] args) throws IOException {
+	      // push: push()를 이용하여 값을 넣음.
+	      // pop: push()를 이용하여 값을 빼고 출력.
+	      //size: size()를 이용하여 스택의 크기를 출력.
+	      //empty:isEmpty()를 이용하여 비어있는지 확인하고 값을 출력. 비었다면 true를 반환
+	      //top: peek()를 이용하여 스택 가장 위의 정수를 출력. 이는 이 메소드를 사용하지 않고 가장 마지막에 넣은 값을 이용하여 출력할 수도 있음.
+	      
+	      BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); // //입력
+	      StringBuilder sb = new StringBuilder(); //문자열 조작 지원
+	      
+	      StringTokenizer st; //Token할 대상과 구분자 지정
+	      
+	      int N = Integer.parseInt(br.readLine()); //주어지는 명령의 수, 줄 단위로 문자열 처리 기능 제공
+	      
+	      stack = new int[N]; //정수 저장 스택
+	      
+	      while(N-- > 0) { //N이 0보다 클 때 계속
+	         st = new StringTokenizer(br.readLine()," ");
+	         
+	         switch (st.nextToken()) {
+	         
+	         case "push" :
+	            push(Integer.parseInt(st.nextToken()));
+	            break;
+	            
+	         case "pop" :
+	            sb.append(pop()).append('\n'); //append는 덧붙이고 싶은 내용 작성
+	            break;
+	         
+	         case "size" :
+	            sb.append(size()).append('\n');
+	            break;
+	            
+	         case "empty" :
+	            sb.append(empty()).append('\n');
+	            break;
+	            
+	         case "top" :
+	            sb.append(top()).append('\n');
+	            break;
+	            
+	         }
+	      }
+	      System.out.println(sb);   
+	   }
+	   
+	   private static void push(int X) {
+	      stack[size] =X; //정수 X를 stack에 넣는 연산
+	      size++;
+	   }
+
+	   private static int pop() {
+	      if(size == 0) { //스택 들어있는 정수 없는 경우 -1 출력
+	      return -1;
+	      }
+	      else {
+	         int res = stack[size -1]; // 그 수 출력
+	         stack[size -1] = 0; //스택에서 가장 위에 있는 정수 뺀다
+	         size--;
+	      return res;
+	      }
+	   }
+
+	   private static int size() { //스택에 들어있는 정수 개수 출력
+	      return size;
+	   }
+	   
+	   private static int empty() { 
+	      if(size == 0) {return 1;} //스택 비어있으면 1 출력, 아니면 0 출력
+	      else {return 0;}
+	    }
+
+	   private static int top() {
+	      if(size == 0) {return -1;} //스택에 정수 없는 경우 -1 출력
+	      else {return stack[size -1];} //스택 가장 위에 있는 정수 출력
+	   }
+	}
