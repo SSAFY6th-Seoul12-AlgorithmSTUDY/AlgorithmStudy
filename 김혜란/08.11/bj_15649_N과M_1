@@ -1,0 +1,48 @@
+package com.ssafy.study_0811;
+
+import java.util.Scanner;
+//nPr
+public class bj_15649_N과M_1 {
+	
+	static int N,M;
+	static int[] numbers;
+	static int[] selected, input;
+	static boolean[] flag;
+	
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		N = sc.nextInt(); //1-N까지의 수
+		M = sc.nextInt(); //수열의 길이 M
+		
+		input = new int[N]; // 1-N까지의 수를 넣은 배열
+		selected = new int[M]; //선택된 수 넣는 배열
+		flag = new boolean[N]; // 썼는지 아닌지 T/F로 표시
+		
+		for (int i = 0; i < N; i++) {
+			input[i] = i+1; //1부터 N까지 배열에 저장.
+		}
+		
+		permutation(0); //0번째 위치에 넣을 숫자 뽑으러. 뽑은 숫자 갯수
+	}
+	
+	public static void permutation(int cnt) {
+		if(cnt == M) { //M개 뽑았으면 종료
+			for (int i = 0; i < M; i++) {
+				System.out.print(selected[i]+" ");
+			}
+			System.out.println();
+			return;
+		}
+		
+		for (int i = 0; i < N; i++) {
+			if(!flag[i]) {//아직 사용 안한 수라면
+				
+				flag[i] =true; //사용했다 체크하고
+				selected[cnt]=input[i];// cnt위치에 i값 저장
+				permutation(cnt+1);//다음 위치에 넣을 값 뽑으러
+				flag[i] = false;// 다시 안씀으로 체크
+			}
+		}
+	}
+}
