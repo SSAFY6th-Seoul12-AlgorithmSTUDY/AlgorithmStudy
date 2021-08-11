@@ -1,0 +1,42 @@
+package com.ssafy.study_0811;
+
+import java.util.Scanner;
+
+//중복 허용
+public class bj_15651_N과M_3 {
+
+	static int N, M;
+	public static int[] arr;
+	static StringBuilder sb = new StringBuilder(); //문자열을 하나로 묶어주는 역할.
+
+	public static void main(String[] args) throws Exception {
+		Scanner in = new Scanner(System.in);
+
+		N = in.nextInt(); // 1-N까지의 수
+		M = in.nextInt(); // 수열의 길이 M
+		arr = new int[M]; // 결과 값을 담을 배열
+
+		dfs(0); // 깊이 0부터 시작.
+		System.out.print(sb);
+
+	}
+
+	public static void dfs(int dep) {
+		// 깊이가 M이랑 동일 -> 출력후 리턴
+		if (dep == M) {
+			for (int i = 0; i < M; i++) {
+				sb.append(arr[i] + " ");
+			}
+			sb.append('\n'); //줄바꿈.
+			return;
+		}
+
+		for (int i = 1; i <= N; i++) {
+			arr[dep] = i; //현재 깊이를 인덱스로 하여 해당 위치에 i값 넣기
+			dfs(dep + 1); //깊이를 1 증가시켜서 M과 같아지면 재귀 종료할 수 있도록.
+		}
+	}
+
+}
+//https://st-lab.tistory.com/116?category=862595
+//https://st-lab.tistory.com/114#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98 -> 1번
