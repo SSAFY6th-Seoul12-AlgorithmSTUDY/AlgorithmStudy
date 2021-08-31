@@ -100,7 +100,6 @@ public class KAKAO_BLIND_RECRUITMENT_2020_기둥과보설치 {
 			answer[idx][0] = p.x;
 			answer[idx][1] = p.y;
 			answer[idx++][2] = 0;
-//			System.out.println("기둥 : " +p.x+", "+p.y);
 		}
 		for (Point p : row) {
 			answer[idx][0] = p.x;
@@ -117,7 +116,7 @@ public class KAKAO_BLIND_RECRUITMENT_2020_기둥과보설치 {
 			return true;
 		if (row.contains(new Point(x, y)) || row.contains(new Point(x - 1, y)))
 			return true;
-		if (row.contains(new Point(x, y - 1)))
+		if (col.contains(new Point(x, y - 1)))
 			return true;
 		return false;
 	}
