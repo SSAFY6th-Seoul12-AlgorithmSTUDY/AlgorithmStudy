@@ -56,7 +56,7 @@ public class KAKAO_BLIND_RECRUITMENT_2020_기둥과보설치 {
 
 		row = new HashSet<>(); // 보 좌표 리스트
 		col = new HashSet<>(); // 기둥 좌표 리스트
-		
+
 		for (int i = 0; i < R; i++) {
 			int x = build_frame[i][0];
 			int y = build_frame[i][1];
@@ -66,13 +66,22 @@ public class KAKAO_BLIND_RECRUITMENT_2020_기둥과보설치 {
 			if (a == 0) { // 기둥
 				if (b == 0) { // 삭제
 					col.remove(new Point(x, y));
-					if ((col.contains(new Point(x, y - 1)) && isAvailableCol(x, y - 1)) 
-							&& (col.contains(new Point(x, y + 1)) && isAvailableCol(x, y + 1)) 
-							&& (row.contains(new Point(x - 1, y + 1)) && isAvailableRow(x - 1, y + 1)) 
-							&& (row.contains(new Point(x, y + 1)) && isAvailableRow(x, y + 1))) {
+					if (col.contains(new Point(x, y - 1)) && !isAvailableCol(x, y - 1)) {
+						col.add(new Point(x, y));
 						continue;
 					}
-					col.add(new Point(x, y));
+					if (col.contains(new Point(x, y + 1)) && !isAvailableCol(x, y + 1)) {
+						col.add(new Point(x, y));
+						continue;
+					}
+					if (row.contains(new Point(x - 1, y + 1)) && !isAvailableRow(x - 1, y + 1)) {
+						col.add(new Point(x, y));
+						continue;
+					}
+					if (row.contains(new Point(x, y + 1)) && !isAvailableRow(x, y + 1)) {
+						col.add(new Point(x, y));
+						continue;
+					}
 				} else { // 설치
 					if (isAvailableCol(x, y))
 						col.add(new Point(x, y));
@@ -80,21 +89,30 @@ public class KAKAO_BLIND_RECRUITMENT_2020_기둥과보설치 {
 			} else { // 보
 				if (b == 0) { // 삭제
 					row.remove(new Point(x, y));
-					if ((row.contains(new Point(x-1,y)) && isAvailableRow(x-1, y)) 
-							&& (row.contains(new Point(x+1,y)) && isAvailableRow(x+1, y)) 
-							&& (col.contains(new Point(x,y)) && isAvailableCol(x, y)) 
-							&& (col.contains(new Point(x+1,y)) && isAvailableCol(x+1, y))) {
+					if (row.contains(new Point(x - 1, y)) && !isAvailableRow(x - 1, y)) {
+						row.add(new Point(x, y));
 						continue;
 					}
-					row.add(new Point(x, y));
+					if (row.contains(new Point(x + 1, y)) && !isAvailableRow(x + 1, y)) {
+						row.add(new Point(x, y));
+						continue;
+					}
+					if (col.contains(new Point(x, y)) && !isAvailableCol(x, y)) {
+						row.add(new Point(x, y));
+						continue;
+					}
+					if (col.contains(new Point(x + 1, y)) && !isAvailableCol(x + 1, y)) {
+						row.add(new Point(x, y));
+						continue;
+					}
 				} else { // 설치
 					if (isAvailableRow(x, y))
 						row.add(new Point(x, y));
 				}
 			}
 		}
-		
-		int[][] answer = new int[row.size()+col.size()][3];
+
+		int[][] answer = new int[row.size() + col.size()][3];
 		int idx = 0;
 		for (Point p : col) {
 			answer[idx][0] = p.x;
@@ -106,7 +124,8 @@ public class KAKAO_BLIND_RECRUITMENT_2020_기둥과보설치 {
 			answer[idx][1] = p.y;
 			answer[idx++][2] = 1;
 		}
-		Arrays.sort(answer, (o1, o2)->Integer.compare(o1[0], o2[0])==0?Integer.compare(o1[1], o2[1]):Integer.compare(o1[0], o2[0]));
+		Arrays.sort(answer, (o1, o2) -> Integer.compare(o1[0], o2[0]) == 0 ? Integer.compare(o1[1], o2[1])
+				: Integer.compare(o1[0], o2[0]));
 
 		return answer;
 	}
