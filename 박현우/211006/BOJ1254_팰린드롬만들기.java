@@ -23,5 +23,4 @@ public class BOJ1254_팰린드롬만들기 {
 			break;
 		}
 	}
-
 }
